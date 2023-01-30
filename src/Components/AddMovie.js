@@ -7,14 +7,14 @@ const AddMovie = ({ movies, setMovies }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [djeja, setDjeja] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState("");
   const [rating, setRating] = useState(0);
   const handleSubmit = () =>
     setMovies([
       ...movies,
-      { title: djeja, description, image, rating, id: Math.random() },
+      { title: title, description, image, rating, id: Math.random() },
     ]);
   return (
     <>
@@ -31,7 +31,7 @@ const AddMovie = ({ movies, setMovies }) => {
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Title</Form.Label>
               <Form.Control
-                onChange={(e) => setDjeja(e.target.value)}
+                onChange={(e) => setTitle(e.target.value)}
                 type="text"
                 placeholder="Enter title"
               />
