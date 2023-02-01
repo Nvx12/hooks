@@ -1,11 +1,12 @@
 import "./App.css";
 import MovieList from "./Components/MovieList";
-import Filter from "./Components/Filter";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { useState } from "react";
 import AddMovie from "./Components/AddMovie";
+import { useState } from "react";
+import Filter from "./Components/Filter";
+import NavMovies from "./Components/NavMovies";
+import { Route, Routes } from "react-router-dom";
+import Home from "./Components/Home";
+import MovieDescription from "./Components/MovieDescription";
 
 function App() {
   const [movies, setMovies] = useState([
@@ -16,15 +17,16 @@ function App() {
       image:
         "https://www.ecranlarge.com/uploads/image/001/121/7p8x4u3o3p1jzmbqny3zaloby3m-861.jpg",
       rating: 4,
+      vid: "tGpTpVyI_OQ",
       id: Math.random(),
     },
     {
       title: "Interstellar",
       description:
         "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
-      image:
-        "https://i.ytimg.com/vi/YF1eYbfbH5k/maxresdefault.jpg",
+      image: "https://i.ytimg.com/vi/YF1eYbfbH5k/maxresdefault.jpg",
       rating: 5,
+      vid: "zSWdZVtXT7E",
       id: Math.random(),
     },
     {
@@ -34,6 +36,7 @@ function App() {
       image:
         "https://m.media-amazon.com/images/M/MV5BZmExNmEwYWItYmQzOS00YjA5LTk2MjktZjEyZDE1Y2QxNjA1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg",
       rating: 3,
+      vid: "vayksn4Y93A",
       id: Math.random(),
     },
     {
@@ -43,31 +46,50 @@ function App() {
       image:
         "https://m.media-amazon.com/images/M/MV5BMjIyNTQ5NjQ1OV5BMl5BanBnXkFtZTcwODg1MDU4OA@@._V1_.jpg",
       rating: 4,
+      vid: "0fUCuvNlOCg",
       id: Math.random(),
     },
   ]);
 
   const [titre, setTitre] = useState("");
   const [etoile, setEtoile] = useState(0);
+
   return (
     <>
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Movies App</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Movies List</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+      <NavMovies />
       <div
         className="button"
         style={{ display: "flex", justifyContent: "space-between" }}
       >
-        <Filter setTitre={setTitre} setEtoile={setEtoile} titre={titre} etoile={etoile} /> 
-        <AddMovie setMovies={setMovies} movies={movies}/>
+        <Filter
+          setTitre={setTitre}
+          setEtoile={setEtoile}
+          titre={titre}
+          etoile={etoile}
+        />
+        <AddMovie setMovies={setMovies} movies={movies} />
       </div>
-      <MovieList movies={movies} titre={titre} etoile={etoile} setMovies={setMovies} />
+      <br />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/MovieList"
+          element={
+            <MovieList
+              movies={movies}
+              titre={titre}
+              etoile={etoile}
+              setMovies={setMovies}
+              setTitre={setTitre}
+              setEtoile={setEtoile}
+            />
+          }
+        />
+        <Route
+          path="/MovieDescription/:id"
+          element={<MovieDescription movies={movies} />}
+        />
+      </Routes>
     </>
   );
 }
