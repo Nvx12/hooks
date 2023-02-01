@@ -8,7 +8,6 @@ const MovieList = ({ movies, titre, etoile, setMovies }) => {
   );
   return (
     <>
-      <div className="hero-container" data-aos="fade-up">
         <div className="list">
           {x.length === 0 ? (
             <h1>Not Found</h1>
@@ -23,7 +22,6 @@ const MovieList = ({ movies, titre, etoile, setMovies }) => {
             ))
           )}
         </div>
-      </div>
     </>
   );
 };

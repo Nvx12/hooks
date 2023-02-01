@@ -62,6 +62,7 @@ function App() {
           <div
             className="button"
             style={{ display: "flex", justifyContent: "space-between" }}
+            
           >
             <Filter
               setTitre={setTitre}
