@@ -57,39 +57,44 @@ function App() {
   return (
     <>
       <NavMovies />
-      <div
-        className="button"
-        style={{ display: "flex", justifyContent: "space-between" }}
-      >
-        <Filter
-          setTitre={setTitre}
-          setEtoile={setEtoile}
-          titre={titre}
-          etoile={etoile}
-        />
-        <AddMovie setMovies={setMovies} movies={movies} />
-      </div>
-      <br />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/MovieList"
-          element={
-            <MovieList
-              movies={movies}
-              titre={titre}
-              etoile={etoile}
-              setMovies={setMovies}
+      <section id="hero">
+        <div className="hero-container" data-aos="fade-up">
+          <div
+            className="button"
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <Filter
               setTitre={setTitre}
               setEtoile={setEtoile}
+              titre={titre}
+              etoile={etoile}
             />
-          }
-        />
-        <Route
-          path="/MovieDescription/:id"
-          element={<MovieDescription movies={movies} />}
-        />
-      </Routes>
+            <AddMovie setMovies={setMovies} movies={movies} />
+          </div>
+          <br />
+
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/MovieList"
+              element={
+                <MovieList
+                  movies={movies}
+                  titre={titre}
+                  etoile={etoile}
+                  setMovies={setMovies}
+                  setTitre={setTitre}
+                  setEtoile={setEtoile}
+                />
+              }
+            />
+            <Route
+              path="/MovieDescription/:id"
+              element={<MovieDescription movies={movies} />}
+            />
+          </Routes>
+        </div>
+      </section>
     </>
   );
 }

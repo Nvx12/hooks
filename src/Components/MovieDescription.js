@@ -6,7 +6,7 @@ const MovieDescription = ({ movies }) => {
   const found = movies.find((el) => el.id == id);
   console.log(found.id);
   return (
-    <>
+    <>    
       <div className="vid">
         <Card style={{ height:'20rem', width: "35rem" }}>
           <iframe
